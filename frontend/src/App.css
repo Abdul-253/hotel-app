@@ -1,0 +1,215 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, Arial, sans-serif;
+  background: #f0f3f8;
+  color: #1f2937;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+.error { color: #d32f2f; }
+.muted { color: #6b7280; font-size: 14px; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  position: sticky; top: 0; z-index: 5;
+  background: linear-gradient(90deg, #1565c0, #1e40af);
+  color: #fff;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 28px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.navbar .logo { font-weight: 700; font-size: 20px; color: #fff; text-decoration: none; }
+.navbar nav a {
+  color: #dbeafe; text-decoration: none;
+  margin-left: 20px; font-weight: 500;
+}
+.navbar nav a:hover { color: #fff; }
+.navbar nav a.active { color: #fff; text-decoration: underline; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block; padding: 10px 18px; border-radius: 8px;
+  border: 1px solid #1565c0; background: #fff; color: #1565c0;
+  cursor: pointer; text-decoration: none; font-size: 14px; font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: #e3f0ff; }
+.btn-primary { background: #1565c0; color: #fff; }
+.btn-primary:hover { background: #0d47a1; }
+.btn-danger { border-color: #d32f2f; color: #d32f2f; }
+.btn-danger:hover { background: #fdecec; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Page header ---------- */
+.page-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px; gap: 10px;
+}
+.page-header h1 { margin: 0; font-size: 32px; }
+
+/* ---------- Filter bar ---------- */
+.filter-bar {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr auto;
+  gap: 18px;
+  align-items: end;
+  background: #fff;
+  padding: 18px 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 22px;
+}
+.filter-field { display: flex; flex-direction: column; gap: 8px; }
+.filter-label { font-size: 14px; font-weight: 600; color: #374151; }
+.filter-input {
+  padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px;
+  font: inherit; outline: none;
+}
+.filter-input:focus { border-color: #1565c0; box-shadow: 0 0 0 3px #dbeafe; }
+.filter-actions { display: flex; gap: 10px; }
+
+/* ---------- Price range slider ---------- */
+.range-wrap {
+  position: relative;
+  height: 24px;
+  margin: 0 9px; /* thumb half-width, so edges align */
+}
+.range-track {
+  position: absolute; top: 50%; left: 0; right: 0;
+  height: 4px; transform: translateY(-50%);
+  background: #e5e7eb; border-radius: 4px;
+}
+.range-fill {
+  position: absolute; top: 50%;
+  height: 4px; transform: translateY(-50%);
+  background: #1565c0; border-radius: 4px;
+}
+.range-input {
+  position: absolute; top: 0; left: -9px;
+  width: calc(100% + 18px); height: 24px;
+  margin: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none;  /* track click block, thumb mattum drag aagum */
+}
+.range-input::-webkit-slider-runnable-track { background: transparent; height: 24px; }
+.range-input::-moz-range-track { background: transparent; }
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff;
+  border: 3px solid #1565c0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  cursor: grab;
+  margin-top: 3px;
+}
+.range-input::-moz-range-thumb {
+  pointer-events: all;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff;
+  border: 3px solid #1565c0;
+  cursor: grab;
+}
+
+/* ---------- Hotel cards ---------- */
+.hotel-grid { display: grid; gap: 18px; }
+.hotel-card {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.hotel-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); }
+.hotel-card img { width: 240px; height: 180px; object-fit: cover; flex-shrink: 0; }
+.hotel-info {
+  padding: 16px 20px; flex: 1;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.hotel-info h3 { margin: 0; font-size: 19px; }
+.price { color: #1565c0; font-weight: 700; font-size: 20px; margin: 0; }
+.desc { color: #6b7280; font-size: 14px; margin: 0; }
+.actions { margin-top: auto; display: flex; gap: 10px; }
+
+/* ---------- Pagination ---------- */
+.pagination { display: flex; justify-content: center; gap: 6px; margin-top: 26px; }
+.pagination button {
+  min-width: 36px; padding: 7px 12px;
+  border: 1px solid #d1d5db; background: #fff;
+  border-radius: 6px; cursor: pointer; font: inherit;
+}
+.pagination button:hover:not(:disabled) { background: #e3f0ff; }
+.pagination .active { background: #1565c0; color: #fff; border-color: #1565c0; }
+.pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- Form ---------- */
+.hotel-form {
+  background: #fff; padding: 28px; border-radius: 12px;
+  max-width: 620px; margin: 0 auto;
+  display: grid; gap: 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+.hotel-form label { display: grid; gap: 6px; font-weight: 600; font-size: 14px; color: #374151; }
+.hotel-form input, .hotel-form textarea {
+  padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px;
+  font: inherit; font-weight: 400;
+}
+.hotel-form input:focus, .hotel-form textarea:focus {
+  outline: none; border-color: #1565c0; box-shadow: 0 0 0 3px #dbeafe;
+}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field-error { color: #d32f2f; font-size: 13px; font-weight: 400; }
+.preview { width: 100%; max-height: 220px; object-fit: cover; border-radius: 8px; }
+
+/* ---------- Detail page ---------- */
+.back { color: #1565c0; text-decoration: none; font-weight: 600; }
+.detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  background: #fff; padding: 22px; border-radius: 12px; margin-top: 14px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+.detail-grid img { width: 100%; height: 100%; max-height: 360px; border-radius: 10px; object-fit: cover; }
+.detail-info h1 { margin-top: 0; }
+.desc-full { line-height: 1.6; }
+.distance { background: #e8f5e9; color: #1b5e20; padding: 8px 12px; border-radius: 8px; }
+
+.map-section {
+  background: #fff; padding: 22px; border-radius: 12px; margin-top: 22px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+.map-section h2 { margin-top: 0; }
+.map { width: 100%; height: 380px; border-radius: 10px; overflow: hidden; }
+.map-pin { font-size: 26px; text-align: center; line-height: 30px; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; top: 20px; right: 20px; z-index: 1000;
+  background: #2e7d32; color: #fff; padding: 12px 20px;
+  border-radius: 8px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .filter-bar { grid-template-columns: 1fr 1fr; }
+  .filter-actions { grid-column: 1 / -1; }
+}
+
+@media (max-width: 700px) {
+  .navbar { flex-direction: column; gap: 8px; padding: 14px 16px; }
+  .navbar nav a { margin: 0 10px; }
+  .filter-bar { grid-template-columns: 1fr; }
+  .filter-actions { justify-content: stretch; }
+  .filter-actions .btn { flex: 1; text-align: center; }
+  .hotel-card { flex-direction: column; }
+  .hotel-card img { width: 100%; height: 190px; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .page-header { flex-direction: column; align-items: flex-start; }
+}
